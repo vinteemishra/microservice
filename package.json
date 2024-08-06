@@ -1,0 +1,30 @@
+{
+  "name": "sda-cms-certification-service",
+  "private": true,
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npm run postbuild",
+    "postbuild": "if exist dist\\assets rmdir /s /q dist\\assets && mkdir dist\\assets && xcopy /s assets dist\\assets",
+
+
+    
+    "dev": "tsc --watch & NODE_ENV=dev nodemon dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -c ./tslint.json './src/**/*.ts*'"
+  },
+  "dependencies": {
+    "@types/koa": "^2.13.1",
+    "canvas": "~2.8.0",
+    "koa": "^2.13.1",
+    "koa-body": "^4.1.1",
+    "moment": "^2.18.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "nodemon": "^2.0.6",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.0"
+  }
+}
