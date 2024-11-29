@@ -79,7 +79,8 @@ async function renderCertificate(profile: ICertData) {
     uniqueId,
     memberId,
     country,
-    isManyataUser
+    isManyataUser,
+    moduleName
   } = profile;
  
   const isModuleCertificate =
@@ -200,20 +201,52 @@ async function renderCertificate(profile: ICertData) {
       : context.drawImage(img_filedStar, 1360, 770, 70, 70);
   }
  
-  context.textAlign = 'center'; //Alignment - ie. left, right, center, start, end
-  context.fillStyle = '#333'; //Color
- 
-  //First number is horizontal, and second number is vertical. Starting from the top left corner!
+if(isModuleCertificate){
+  context.textAlign = 'center'; 
+  context.fillStyle = '#333'; 
+  
+  context.font = "normal normal 25px 'NotoSans-Light'";
+  
   context.fillText(jobTitle, 435, 485);
   context.fillText(name, 980, 485);
+  
   nonEmptyString(memberId) && context.fillText(memberId, 710, 406);
+  
   context.fillText(certHeader, 710, 355);
+  
   context.fillText(certBody, 710, 570);
-  context.fillText(certBody1, 710, 610);
-  context.fillText(certBody2, 710, 650);
+  
+  const moduleNameY = 570 + 40; 
  
-  // context.font = "normal normal 25px 'Ubuntu Light'"; //The dates need to be a slight lesser size
-  context.font = "normal normal 25px 'NotoSans-Light'"; //The dates need to be a slight lesser size
+if (moduleName) {
+    context.font = "bold 25px 'NotoSans-Bold'";
+    context.fillText(moduleName, 710, moduleNameY);
+ 
+    context.font = "normal normal 25px 'NotoSans-Light'";
+}
+ 
+const certBody1Y = moduleNameY + 40; 
+context.fillText(certBody1, 710, certBody1Y);
+ 
+const certBody2Y = certBody1Y + 40; 
+context.fillText(certBody2, 710, certBody2Y);
+ 
+ 
+}
+else
+{
+    context.textAlign = 'center'; 
+    context.fillStyle = '#333'; 
+    context.fillText(jobTitle, 435, 485);
+    context.fillText(name, 980, 485);
+    nonEmptyString(memberId) && context.fillText(memberId, 710, 406);
+    context.fillText(certHeader, 710, 355);
+    context.fillText(certBody, 710, 570);
+    context.fillText(certBody1, 710, 610);
+    context.fillText(certBody2, 710, 650);
+    context.font = "normal normal 25px 'NotoSans-Light'"; 
+    }
+
   {
     !date_1 ? null : context.fillText(date_1, 1525, 425);
   }
@@ -240,7 +273,6 @@ async function renderCertificate(profile: ICertData) {
     context.restore();
   }
  
-  // If the user is a Manyata user, load and draw the Manyata logo
   if(country==='IN'){
    if (isManyataUser) {
     const manyataLogoPath = path.join(__dirname, '..', 'assets', 'templates', 'manyata_logo.png');
@@ -260,6 +292,83 @@ async function renderCertificate(profile: ICertData) {
         console.error("Manyata logo file does not exist:", manyataLogoPath);
     }
 }
+}
+
+if (country === 'ET') {
+  const canvasWidth = canvas.width;
+  const canvasHeight = canvas.height;
+  context.font = "bold 30px Arial";
+  context.font = "30px Arial";
+  context.fillStyle = "black";
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  const xOffset = 250;
+  const paddingFromBottom = 400;
+  console.log("hellooo", certBody);
+  console.log("hellooo", moduleName);
+  if (isModuleCertificate) {
+      switch (moduleName) {
+          case "Postnatal Care":
+              context.fillText("CEU Points: 5", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Antenatal Care":
+              context.fillText("CEU Points: 3", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Modern Contraception":
+              context.fillText("CEU Points: 3", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Perinatal Mental Health":
+              context.fillText("CEU Points: 1", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "COVID-19":
+              context.fillText("2.5 CEUs", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Infection Prevention":
+              context.fillText("CEU Points: 1.5", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Safe Abortion":
+              context.fillText("CEU Points: 4", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Post-Abortion Care":
+              context.fillText("CEU Points: 2", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Hypertension":
+              context.fillText("CEU Points: 1", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Normal Labour and Birth":
+              context.fillText("CEU Points: 4", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Active Management of the Third Stage of Labour (AMTSL)":
+              context.fillText("CEU Points: 1", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Prolonged Labour":
+              context.fillText("CEU Points: 3", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Postpartum Hemorrhage (PPH)":
+              context.fillText("CEU Points: 2", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Manual Removal of Placenta":
+              context.fillText("CEU Points: 3", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Maternal Sepsis":
+              context.fillText("CEU Points: 2", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Neonatal Resuscitation":
+              context.fillText("CEU Points: 3", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Newborn Management":
+              context.fillText("CEU Points: 3", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Low Birth Weight":
+              context.fillText("CEU Points: 1", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          case "Female Genital Mutilation":
+              context.fillText("CEU Points: 1", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+              break;
+          default:
+              break;
+      }
+  }
 }
   return canvas.toBuffer();
 }

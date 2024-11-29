@@ -13,5 +13,6 @@ export interface ICertData {
   memberId?: string;
   country?: string;
   isManyataUser?:boolean;
+  moduleName?:string;
 
 }
