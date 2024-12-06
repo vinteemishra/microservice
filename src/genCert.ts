@@ -7,6 +7,8 @@ import { missingParameter } from './utils';
 import { prettyPrintCertDate, nonEmptyString } from './helper';
 import { ICertData } from './interfaces';
 import { logger } from './logger';
+const manyataCert='Manyata_certificate_template.png';
+
  
 // Handler function for generating a CHAMPION Certificate using the parameters received in the POST request
  
@@ -49,6 +51,9 @@ async function getBaseFile(
     'assets/templates',
     championCert
   );
+
+  
+
   const moduleCertPath = path.join(__dirname, 'assets/templates', moduleCert);
  
   if (isModuleCertificate) {
@@ -58,6 +63,7 @@ async function getBaseFile(
   }
  
   if (fs.existsSync(championCertPath)) {
+    console.log("championCertPath",championCertPath)
     return fs.existsSync(moduleCertPath) === true ? championCert : defaultCert;
   }
  
@@ -82,9 +88,40 @@ async function renderCertificate(profile: ICertData) {
     isManyataUser,
     moduleName
   } = profile;
- 
+
   const isModuleCertificate =
     certBody1 && certBody1.includes('module') ? true : false;
+
+  if (country === 'IN' && isManyataUser && !isModuleCertificate) {
+    console.log("Displaying Manyata Certificate");
+    const manyataCertPath = path.join(__dirname, 'assets/templates', manyataCert);
+
+    if (fs.existsSync(manyataCertPath)) {
+      const canvas = createCanvas(1920, 1357);
+      const context = canvas.getContext('2d');
+
+      const img = await loadImage(manyataCertPath);
+      context.drawImage(img, 0, 0, 1920, 1357);
+
+      
+      context.fillStyle = '#000';
+      context.textAlign = 'center';
+      context.font = "normal normal 30px 'NotoSans-Light'";
+      const nameX = 960; 
+      const nameY = 480; 
+      const jobtitleX = 420; 
+      const jobtitleY = 480; 
+
+      context.fillText(name, nameX, nameY); 
+      context.fillText(jobTitle, jobtitleX, jobtitleY); 
+
+      return canvas.toBuffer(); // Return the Manyata certificate as a PNG buffer
+    } else {
+      console.error('Manyata certificate template not found:', manyataCertPath);
+    }
+  }
+ 
+  
  
   // console.log("cert-service -> header: ", certHeader);
   // console.log("cert-service -> body: ", certBody);
@@ -154,12 +191,7 @@ async function renderCertificate(profile: ICertData) {
       break;
   }
  
- 
- 
- 
- 
- 
-  // Getting the base image for creating the certificate
+ // Getting the base image for creating the certificate
   const basePng = await getBaseFile(country, isModuleCertificate);
   const p2 = path.join(__dirname, 'assets/templates', basePng);
   const img = await loadImage(p2);
@@ -273,27 +305,6 @@ else
     context.restore();
   }
  
-  if(country==='IN'){
-   if (isManyataUser) {
-    const manyataLogoPath = path.join(__dirname, '..', 'assets', 'templates', 'manyata_logo.png');
- 
-    if (fs.existsSync(manyataLogoPath)) {
-        try {
-            const imgManyataLogo = await loadImage(manyataLogoPath);
-            console.log(imgManyataLogo);
-            // context.drawImage(imgManyataLogo, 1500, 50, 300, 100);
-            context.drawImage(imgManyataLogo, 1500, 80, 100, 80);
- 
-            console.log("Manyata logo drawn successfully");
-        } catch (error) {
-            console.error("Error loading or drawing Manyata logo:", error);
-        }
-    } else {
-        console.error("Manyata logo file does not exist:", manyataLogoPath);
-    }
-}
-}
-
 if (country === 'ET') {
   const canvasWidth = canvas.width;
   const canvasHeight = canvas.height;
