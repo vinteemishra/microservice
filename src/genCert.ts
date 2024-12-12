@@ -124,7 +124,7 @@ async function renderCertificate(profile: ICertData) {
   }
 
 
-  if (country === 'ET' && isManyataUser && isModuleCertificate) {
+  if (country === 'ET' && !isManyataUser && isModuleCertificate ) {
     console.log("Displaying Manyata Certificate");
     const ethopiaCertPath = path.join(__dirname, 'assets/templates', ethopiaCert);
 
@@ -149,7 +149,7 @@ async function renderCertificate(profile: ICertData) {
       
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
-      const xOffset = 190;
+      const xOffset = 210;
       const paddingFromBottom = 665;
       if(isModuleCertificate){
         context.textAlign = 'center'; 
