@@ -356,7 +356,7 @@ else
   }
 
   if (country === 'ET' && !isManyataUser && isModuleCertificate ) {
-    console.log("Displaying Manyata Certificate");
+    // console.log("Displaying Manyata Certificate");
     const ethopiaCertPath = path.join(__dirname, 'assets/templates', ethopiaCert);
 
     if (fs.existsSync(ethopiaCertPath)) {
