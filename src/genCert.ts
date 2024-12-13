@@ -94,166 +94,166 @@ async function renderCertificate(profile: ICertData) {
   const isModuleCertificate =
     certBody1 && certBody1.includes('module') ? true : false;
 
-  if (country === 'IN' && isManyataUser && !isModuleCertificate) {
-    console.log("Displaying Manyata Certificate");
-    const manyataCertPath = path.join(__dirname, 'assets/templates', manyataCert);
+  // if (country === 'IN' && isManyataUser && !isModuleCertificate) {
+  //   console.log("Displaying Manyata Certificate");
+  //   const manyataCertPath = path.join(__dirname, 'assets/templates', manyataCert);
 
-    if (fs.existsSync(manyataCertPath)) {
-      const canvas = createCanvas(1920, 1357);
-      const context = canvas.getContext('2d');
+  //   if (fs.existsSync(manyataCertPath)) {
+  //     const canvas = createCanvas(1920, 1357);
+  //     const context = canvas.getContext('2d');
 
-      const img = await loadImage(manyataCertPath);
-      context.drawImage(img, 0, 0, 1920, 1357);
-
-      
-      context.fillStyle = '#000';
-      context.textAlign = 'center';
-      context.font = "normal normal 30px 'NotoSans-Light'";
-      const nameX = 960; 
-      const nameY = 480; 
-      const jobtitleX = 420; 
-      const jobtitleY = 480; 
-
-      context.fillText(name, nameX, nameY); 
-      context.fillText(jobTitle, jobtitleX, jobtitleY); 
-
-      return canvas.toBuffer(); // Return the Manyata certificate as a PNG buffer
-    } else {
-      console.error('Manyata certificate template not found:', manyataCertPath);
-    }
-  }
-
-
-  if (country === 'ET' && !isManyataUser && isModuleCertificate ) {
-    console.log("Displaying Manyata Certificate");
-    const ethopiaCertPath = path.join(__dirname, 'assets/templates', ethopiaCert);
-
-    if (fs.existsSync(ethopiaCertPath)) {
-      const canvas = createCanvas(1920, 1357);
-      const context = canvas.getContext('2d');
-
-      const img = await loadImage(ethopiaCertPath);
-      context.drawImage(img, 0, 0, 1920, 1357);
+  //     const img = await loadImage(manyataCertPath);
+  //     context.drawImage(img, 0, 0, 1920, 1357);
 
       
-      context.fillStyle = '#000';
-      context.textAlign = 'center';
-      context.font = "normal normal 30px 'NotoSans-Light'";
-      // const nameX = 960; 
-      // const nameY = 480; 
-      // const jobtitleX = 420; 
-      // const jobtitleY = 480; 
+  //     context.fillStyle = '#000';
+  //     context.textAlign = 'center';
+  //     context.font = "normal normal 30px 'NotoSans-Light'";
+  //     const nameX = 960; 
+  //     const nameY = 480; 
+  //     const jobtitleX = 420; 
+  //     const jobtitleY = 480; 
 
-      // context.fillText(name, nameX, nameY); 
-      // context.fillText(jobTitle, jobtitleX, jobtitleY); 
+  //     context.fillText(name, nameX, nameY); 
+  //     context.fillText(jobTitle, jobtitleX, jobtitleY); 
+
+  //     return canvas.toBuffer(); // Return the Manyata certificate as a PNG buffer
+  //   } else {
+  //     console.error('Manyata certificate template not found:', manyataCertPath);
+  //   }
+  // }
+
+
+  // if (country === 'ET' && !isManyataUser && isModuleCertificate ) {
+  //   console.log("Displaying Manyata Certificate");
+  //   const ethopiaCertPath = path.join(__dirname, 'assets/templates', ethopiaCert);
+
+  //   if (fs.existsSync(ethopiaCertPath)) {
+  //     const canvas = createCanvas(1920, 1357);
+  //     const context = canvas.getContext('2d');
+
+  //     const img = await loadImage(ethopiaCertPath);
+  //     context.drawImage(img, 0, 0, 1920, 1357);
+
       
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const xOffset = 210;
-      const paddingFromBottom = 665;
-      if(isModuleCertificate){
-        context.textAlign = 'center'; 
-        context.fillStyle = '#333'; 
-        
-        context.font = "normal normal 25px 'NotoSans-Light'";
-        
-        context.fillText(jobTitle, 435, 485);
-        context.fillText(name, 980, 485);
-        
-        nonEmptyString(memberId) && context.fillText(memberId, 710, 406);
-        
-        context.fillText(certHeader, 710, 355);
-        
-        context.fillText(certBody, 710, 570);
-        
-        const moduleNameY = 570 + 40; 
-       
-      if (moduleName) {
-          context.font = "bold 25px 'NotoSans-Bold'";
-          context.fillText(moduleName, 710, moduleNameY);
-       
-          context.font = "normal normal 25px 'NotoSans-Light'";
-      }
-       
-      const certBody1Y = moduleNameY + 40; 
-      context.fillText(certBody1, 710, certBody1Y);
-       
-      const certBody2Y = certBody1Y + 40; 
-      context.fillText(certBody2, 600, certBody2Y);
-       
-       
-      }
+  //     context.fillStyle = '#000';
+  //     context.textAlign = 'center';
+  //     context.font = "normal normal 30px 'NotoSans-Light'";
+  //     // const nameX = 960; 
+  //     // const nameY = 480; 
+  //     // const jobtitleX = 420; 
+  //     // const jobtitleY = 480; 
 
-      context.font = "bold 25px 'Noto Sans'";
+  //     // context.fillText(name, nameX, nameY); 
+  //     // context.fillText(jobTitle, jobtitleX, jobtitleY); 
+      
+  //     const canvasWidth = canvas.width;
+  //     const canvasHeight = canvas.height;
+  //     const xOffset = 210;
+  //     const paddingFromBottom = 665;
+  //     if(isModuleCertificate){
+  //       context.textAlign = 'center'; 
+  //       context.fillStyle = '#333'; 
+        
+  //       context.font = "normal normal 25px 'NotoSans-Light'";
+        
+  //       context.fillText(jobTitle, 435, 485);
+  //       context.fillText(name, 980, 485);
+        
+  //       nonEmptyString(memberId) && context.fillText(memberId, 710, 406);
+        
+  //       context.fillText(certHeader, 710, 355);
+        
+  //       context.fillText(certBody, 710, 570);
+        
+  //       const moduleNameY = 570 + 40; 
+       
+  //     if (moduleName) {
+  //         context.font = "bold 25px 'NotoSans-Bold'";
+  //         context.fillText(moduleName, 710, moduleNameY);
+       
+  //         context.font = "normal normal 25px 'NotoSans-Light'";
+  //     }
+       
+  //     const certBody1Y = moduleNameY + 40; 
+  //     context.fillText(certBody1, 710, certBody1Y);
+       
+  //     const certBody2Y = certBody1Y + 40; 
+  //     context.fillText(certBody2, 600, certBody2Y);
+       
+       
+  //     }
+
+  //     context.font = "bold 25px 'Noto Sans'";
 
 
-      switch (moduleName) {
-        case "Postnatal Care":
-            context.fillText("5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Antenatal Care":
-            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Modern Contraception":
-            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Perinatal Mental Health":
-            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "COVID-19":
-            context.fillText("2.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Infection Prevention":
-            context.fillText("1.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Safe Abortion":
-            context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Post-Abortion Care":
-            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Hypertension":
-            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Normal Labour and Birth":
-            context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Active Management of the Third Stage of Labour (AMTSL)":
-            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Prolonged Labour":
-            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Postpartum Hemorrhage (PPH)":
-            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Manual Removal of Placenta":
-            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Maternal Sepsis":
-            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Neonatal Resuscitation":
-            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Newborn Management":
-            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Low Birth Weight":
-            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        case "Female Genital Mutilation":
-            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
-            break;
-        default:
-            break;
-    }
+  //     switch (moduleName) {
+  //       case "Postnatal Care":
+  //           context.fillText("5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Antenatal Care":
+  //           context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Modern Contraception":
+  //           context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Perinatal Mental Health":
+  //           context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "COVID-19":
+  //           context.fillText("2.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Infection Prevention":
+  //           context.fillText("1.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Safe Abortion":
+  //           context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Post-Abortion Care":
+  //           context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Hypertension":
+  //           context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Normal Labour and Birth":
+  //           context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Active Management of the Third Stage of Labour (AMTSL)":
+  //           context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Prolonged Labour":
+  //           context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Postpartum Hemorrhage (PPH)":
+  //           context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Manual Removal of Placenta":
+  //           context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Maternal Sepsis":
+  //           context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Neonatal Resuscitation":
+  //           context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Newborn Management":
+  //           context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Low Birth Weight":
+  //           context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       case "Female Genital Mutilation":
+  //           context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+  //           break;
+  //       default:
+  //           break;
+  //   }
 
-      return canvas.toBuffer(); // Return the Ethopia certificate as a PNG buffer
-    } else {
-      console.error('Ethopia certificate template not found:', ethopiaCertPath);
-    }
-  }
+  //     return canvas.toBuffer(); // Return the Ethopia certificate as a PNG buffer
+  //   } else {
+  //     console.error('Ethopia certificate template not found:', ethopiaCertPath);
+  //   }
+  // }
  
   
  
@@ -437,6 +437,274 @@ else
     context.textAlign = 'center';
     context.fillText(`ID: ${uniqueId}`, 0, 0);
     context.restore();
+  }
+
+  if (country === 'IN' && isManyataUser && !isModuleCertificate) {
+    console.log("Displaying Manyata Certificate");
+    const manyataCertPath = path.join(__dirname, 'assets/templates', manyataCert);
+    
+
+    if (fs.existsSync(manyataCertPath)) {
+      const canvas = createCanvas(1920, 1357);
+      const context = canvas.getContext('2d');
+
+      const img = await loadImage(manyataCertPath);
+      context.drawImage(img, 0, 0, 1920, 1357);
+
+      
+      context.fillStyle = '#000';
+      context.textAlign = 'center';
+      context.font = "normal normal 30px 'NotoSans-Light'";
+      const nameX = 960; 
+      const nameY = 480; 
+      const jobtitleX = 420; 
+      const jobtitleY = 480; 
+
+      context.fillText(name, nameX, nameY); 
+      context.fillText(jobTitle, jobtitleX, jobtitleY); 
+
+      {
+        !date_1
+          ? context.drawImage(img_unfiledStar, 1360, 380, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 380, 70, 70);
+      }
+      {
+        !date_2
+          ? context.drawImage(img_unfiledStar, 1360, 475, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 475, 70, 70);
+      }
+      {
+        !date_3
+          ? context.drawImage(img_unfiledStar, 1360, 575, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 575, 70, 70);
+      }
+      {
+        !date_4
+          ? context.drawImage(img_unfiledStar, 1360, 670, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 670, 70, 70);
+      }
+      {
+        !date_5
+          ? context.drawImage(img_unfiledStar, 1360, 770, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 770, 70, 70);
+      }
+
+      {
+        !date_1 ? null : context.fillText(date_1, 1525, 425);
+      }
+      {
+        !date_2 ? null : context.fillText(date_2, 1525, 522);
+      }
+      {
+        !date_3 ? null : context.fillText(date_3, 1525, 620);
+      }
+      {
+        !date_4 ? null : context.fillText(date_4, 1525, 717);
+      }
+      {
+        !date_5 ? null : context.fillText(date_5, 1525, 814);
+      }
+
+      if (nonEmptyString(uniqueId)) {
+        context.save();
+        context.font = "normal normal 20px 'monospace'";
+        context.translate(1815, 678);
+        context.rotate(-Math.PI / 2);
+        context.textAlign = 'center';
+        context.fillText(`ID: ${uniqueId}`, 0, 0);
+        context.restore();
+      }
+     
+     
+
+      return canvas.toBuffer(); // Return the Manyata certificate as a PNG buffer
+    } else {
+      console.error('Manyata certificate template not found:', manyataCertPath);
+    }
+  }
+
+  if (country === 'ET' && !isManyataUser && isModuleCertificate ) {
+    console.log("Displaying Manyata Certificate");
+    const ethopiaCertPath = path.join(__dirname, 'assets/templates', ethopiaCert);
+
+    if (fs.existsSync(ethopiaCertPath)) {
+      const canvas = createCanvas(1920, 1357);
+      const context = canvas.getContext('2d');
+
+      const img = await loadImage(ethopiaCertPath);
+      context.drawImage(img, 0, 0, 1920, 1357);
+
+      
+      context.fillStyle = '#000';
+      context.textAlign = 'center';
+      context.font = "normal normal 30px 'NotoSans-Light'";
+      // const nameX = 960; 
+      // const nameY = 480; 
+      // const jobtitleX = 420; 
+      // const jobtitleY = 480; 
+
+      // context.fillText(name, nameX, nameY); 
+      // context.fillText(jobTitle, jobtitleX, jobtitleY); 
+      
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      const xOffset = 200;
+      const paddingFromBottom = 665;
+      if(isModuleCertificate){
+        context.textAlign = 'center'; 
+        context.fillStyle = '#333'; 
+        
+        context.font = "normal normal 25px 'NotoSans-Light'";
+        
+        context.fillText(jobTitle, 435, 485);
+        context.fillText(name, 980, 485);
+        
+        nonEmptyString(memberId) && context.fillText(memberId, 710, 406);
+        
+        context.fillText(certHeader, 710, 355);
+        
+        context.fillText(certBody, 710, 570);
+        
+        const moduleNameY = 570 + 40; 
+       
+      if (moduleName) {
+          context.font = "bold 25px 'NotoSans-Bold'";
+          context.fillText(moduleName, 710, moduleNameY);
+       
+          context.font = "normal normal 25px 'NotoSans-Light'";
+      }
+       
+      const certBody1Y = moduleNameY + 40; 
+      context.fillText(certBody1, 710, certBody1Y);
+       
+      const certBody2Y = certBody1Y + 40; 
+      context.fillText(certBody2, 600, certBody2Y);
+       
+       
+      }
+
+      context.font = "bold 25px 'Noto Sans'";
+
+
+      switch (moduleName) {
+        case "Postnatal Care":
+            context.fillText("5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Antenatal Care":
+            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Modern Contraception":
+            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Perinatal Mental Health":
+            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "COVID-19":
+            context.fillText("2.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Infection Prevention":
+            context.fillText("1.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Safe Abortion":
+            context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Post-Abortion Care":
+            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Hypertension":
+            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Normal Labour and Birth":
+            context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Active Management of the Third Stage of Labour (AMTSL)":
+            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Prolonged Labour":
+            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Postpartum Hemorrhage (PPH)":
+            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Manual Removal of Placenta":
+            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Maternal Sepsis":
+            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Neonatal Resuscitation":
+            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Newborn Management":
+            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Low Birth Weight":
+            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        case "Female Genital Mutilation":
+            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            break;
+        default:
+            break;
+    }
+
+    {
+        !date_1
+          ? context.drawImage(img_unfiledStar, 1360, 380, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 380, 70, 70);
+      }
+      {
+        !date_2
+          ? context.drawImage(img_unfiledStar, 1360, 475, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 475, 70, 70);
+      }
+      {
+        !date_3
+          ? context.drawImage(img_unfiledStar, 1360, 575, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 575, 70, 70);
+      }
+      {
+        !date_4
+          ? context.drawImage(img_unfiledStar, 1360, 670, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 670, 70, 70);
+      }
+      {
+        !date_5
+          ? context.drawImage(img_unfiledStar, 1360, 770, 70, 70)
+          : context.drawImage(img_filedStar, 1360, 770, 70, 70);
+      }
+
+      {
+        !date_1 ? null : context.fillText(date_1, 1525, 425);
+      }
+      {
+        !date_2 ? null : context.fillText(date_2, 1525, 522);
+      }
+      {
+        !date_3 ? null : context.fillText(date_3, 1525, 620);
+      }
+      {
+        !date_4 ? null : context.fillText(date_4, 1525, 717);
+      }
+      {
+        !date_5 ? null : context.fillText(date_5, 1525, 814);
+      }
+
+      if (nonEmptyString(uniqueId)) {
+        context.save();
+        context.font = "normal normal 20px 'monospace'";
+        context.translate(1815, 678);
+        context.rotate(-Math.PI / 2);
+        context.textAlign = 'center';
+        context.fillText(`ID: ${uniqueId}`, 0, 0);
+        context.restore();
+      }
+     
+
+      return canvas.toBuffer(); // Return the Ethopia certificate as a PNG buffer
+    } else {
+      console.error('Ethopia certificate template not found:', ethopiaCertPath);
+    }
   }
  
 
