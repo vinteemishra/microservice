@@ -219,7 +219,6 @@ if(isModuleCertificate){
 if (moduleName) {
     context.font = "bold 25px 'NotoSans-Bold'";
     context.fillText(moduleName, 710, moduleNameY);
- 
     context.font = "normal normal 25px 'NotoSans-Light'";
 }
  
@@ -401,8 +400,11 @@ else
        
       if (moduleName) {
           context.font = "bold 25px 'NotoSans-Bold'";
+          if(moduleName=="Hypertension in Pregnancy"){
+            context.fillText("Hypertensive Disorders in Pregnancy", 710, moduleNameY);
+          }else{
           context.fillText(moduleName, 710, moduleNameY);
-       
+          }
           context.font = "normal normal 25px 'NotoSans-Light'";
       }
        
@@ -420,7 +422,7 @@ else
 
       switch (moduleName) {
         case "Postnatal Care":
-            context.fillText("5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
         case "Antenatal Care":
             context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
@@ -429,7 +431,7 @@ else
             context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
         case "Perinatal Mental Health":
-            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            context.fillText("1.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
         case "COVID-19":
             context.fillText("2.5 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
@@ -440,26 +442,26 @@ else
         case "Safe Abortion":
             context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
-        case "Post-Abortion Care":
+        case "Post Abortion Care":
             context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
-        case "Hypertension":
-            context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+        case "Hypertension in Pregnancy":
+            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
         case "Normal Labour and Birth":
             context.fillText("4 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
-        case "Active Management of the Third Stage of Labour (AMTSL)":
+        case "Active Management of Third Stage Labour":
             context.fillText("1 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
         case "Prolonged Labour":
             context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
-        case "Postpartum Hemorrhage (PPH)":
+        case "Post Partum Haemorrhage":
             context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
         case "Manual Removal of Placenta":
-            context.fillText("3 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
+            context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
             break;
         case "Maternal Sepsis":
             context.fillText("2 CEU Points", (canvasWidth / 2) - xOffset, canvasHeight - paddingFromBottom);
